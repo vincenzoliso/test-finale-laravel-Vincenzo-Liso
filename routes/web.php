@@ -27,3 +27,6 @@ Route::post('/singer/store', [SingerController::class, 'storeSinger'])->name('si
 //rotte canzoni
 Route::get('/song/create', [SongController::class, 'createSong'])->name('song.create');
 Route::post('/song/store', [SongController::class, 'storeSong'])->name('song.store');
+
+//rotta songs-by-singer
+Route::get('/songs-by-singer', [SongController::class, 'songsBySinger'])->name('songs.by.singer');

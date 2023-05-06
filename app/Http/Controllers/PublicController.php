@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class PublicController extends Controller
 {
-    public function homepage(Request $request){
-            $singer = Singer::findOrFail($request->input('singer'));
-            $songs = $singer->songs;
-            return view('welcome', compact('singer', 'songs'));
+    public function homepage(){
+        $singers = Singer::orderBy('created_at' , 'desc')->get();
+        return view('welcome', compact('singers'));
+
         }
 }

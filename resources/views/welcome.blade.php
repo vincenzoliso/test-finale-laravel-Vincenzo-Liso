@@ -7,52 +7,54 @@
     <title>Document</title>
     @vite( ['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
-    <h1 class="text-center">Cloudify</h1>
-    <h2 class="text-center">Tutti i cantanti</h2>
-
+<body class=" bg-home">
+    <h1 class="text-center fw-bold text-white">Cloudify</h1>
     @if(session('message'))
     <div class="alert alert-success text-center">
         {{session('message')}}
     </div>
     @endif
 
+<div class="container-fluid">
+    <div class="text-center pulsanti mt-5">
 
-    <div class="text-center mt-5">
-        <a href="{{route('singer.create')}}" class="px-5">Inserisci nuovi cantanti</a>
-        <a href="{{route('song.create')}}">Inserisci nuove canzoni</a>
+        <a href="{{route('singer.create')}}" class="px-5 fs-3">Inserisci nuovi cantanti</a>
+        <a href="{{route('song.create')}}" class="fs-3">Inserisci nuove canzoni</a>
+
     </div>
-    <div class="d-flex justify-content-center mt-5">
+</div>
 
-        <form method="GET" action="{{ route('homepage') }}">
-            @csrf
-            <label for="singer">Seleziona un cantante:</label>
-            <select name="singer" id="singer">
-                @foreach ($singers as $singer)
-                <option value="{{ $singer->id }}">{{ $singer->name }}</option>
-                @endforeach
-            </select>
-            <button type="submit">Cerca</button>
-        </form>
-    </div>
-
-    @if(isset($songs))
-    <table>
-        <thead>
-            <tr>
-                <th>Titolo</th>
-                <th>Data di pubblicazione</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($songs as $song)
-            <tr>
-                <td>{{ $song->title }}</td>
-                <td>{{ $song->release }}</td>
-            </tr>
+    {{-- <div class="d-flex justify-content-center mt-5">
+        <label for="singer">Seleziona un cantante:</label>
+        <select name="singer" id="singer">
+            @foreach ($singers as $singer)
+            <option value="{{ $singer->id }}">{{ $singer->name }}</option>
             @endforeach
-        </tbody>
-    </table>
-    @endif
+        </select>
+        <button type="submit">Cerca</button>
+    </div> --}}
+    {{-- <div class="container mt-5">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Titolo</th>
+                <th scope="col">Data di pubblicazione</th>
+              </tr>
+            </thead>
+            <tbody>
+                @foreach($singers as $singer)
+                <tr>
+                    <td>{{ $singer->id }}</td>
+                    <td>{{ $singer->name }}</td>
+                    <td>{{ $singer->birth }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+          </table>
+
+    </div> --}}
+
+
 </body>
 </html>

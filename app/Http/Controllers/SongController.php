@@ -34,16 +34,22 @@ class SongController extends Controller
         $singers = Singer::all();
         $song->singers()->attach($singers);
 
-        //
-
-
-
-
-
-
         // dd($song);
         return redirect(route('homepage'))->with('message', 'Hai aggiunto correttamente la canzone.');
     }
 
+    public function index()
+    {
+        $singers = Singer::all();
+        return view('songs-by-singer', compact('singers'));
+    }
+
+    public function songsBySinger(Request $request)
+    {
+        $singer = Singer::findOrFail($request->singer_id);
+        $songs = $singer->songs()->orderBy('created_at')->get();
+        $singer_name = $singer->name;
+        return view('songs-by-singer', compact('songs', 'singer_name'));
+    }
 
 }
