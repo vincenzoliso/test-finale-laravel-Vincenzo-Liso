@@ -15,13 +15,13 @@ class SingerController extends Controller
         $request->validate([
             'name' => 'required|min:3|max:50',
             'birth' => 'required',
-            'gender' => 'required'
+            'gender_id' => 'required'
         ]);
 
         $singer = Singer::create([
             'name' => $request->name,
             'birth' => $request->birth,
-            'gender_id'=>$request->gender
+            'gender_id'=>$request->gender_id
         ]);
 
         // dd($singer);
