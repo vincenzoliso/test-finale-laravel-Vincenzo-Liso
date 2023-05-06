@@ -16,21 +16,33 @@
 
     <form action="{{route('song.store')}}" method="POST">
         @csrf
-            <div class="row justify-content-center">
-              <div class="col-12 col-md-8 mt-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 mt-5">
                 <label class="form-label fw-semibold">Titolo canzone</label>
-                <input type="text" class="form-control mb-2" name="title" placeholder="Nome cantante">
-              </div>
-              <div class="col-12 col-md-8">
+                <input type="text" class="form-control mb-1 @error('title') is-invalid @enderror" name="title" placeholder="Titolo" value="{{ old('title') }}">
+                @error('title')
+                <div class="alert alert-danger my-0 py-1">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-12 col-md-8">
                 <label class="form-label fw-semibold">Data di rilascio</label>
-                <input type="date" class="form-control mb-2" name="release" placeholder="Data di rilascio">
-              </div>
+                <input type="date" class="form-control mb-1 @error('release') is-invalid @enderror" name="release" placeholder="Data di rilascio" value="{{ old('release') }}">
+                @error('release')
+                <div class="alert alert-danger my-0 py-1">{{ $message }}</div>
+                @enderror
             </div>
-            <div class="d-flex justify-content-center mt-5">
-                <button type="submit" class="btn btn-primary">Aggiungi canzone</button>
+            <div class="form-group col-12 col-md-8">
+                <label for="singers" class="form-label fw-semibold">Cantanti</label>
+                <select class="form-control" id="singers" name="singers[]" multiple required>
+                    @foreach($singers as $singer)
+                        <option value="{{ $singer->id }}">{{ $singer->name }}</option>
+                    @endforeach
+                </select>
             </div>
-
+        </div>
+        <div class="d-flex justify-content-center mt-5">
+            <button type="submit" class="btn btn-primary">Aggiungi canzone</button>
+        </div>
     </form>
-
 </body>
 </html>

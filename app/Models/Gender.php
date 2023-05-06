@@ -10,7 +10,7 @@ class Gender extends Model
     use HasFactory;
     protected $fillable = ['gender'];
 
-    public function singers(){
+    public function singersGender(){
         return $this->hasMany(Singer::class);
     }
 }

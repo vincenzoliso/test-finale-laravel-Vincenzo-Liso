@@ -14,4 +14,8 @@ class Singer extends Model
     public function gender(){
         return $this->belongsTo(Gender::class);
     }
+
+    public function songs(){
+        return $this->belongsToMany(Song::class);
+    }
 }

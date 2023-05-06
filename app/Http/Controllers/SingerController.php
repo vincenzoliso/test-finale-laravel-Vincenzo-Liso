@@ -13,10 +13,18 @@ class SingerController extends Controller
 
     public function storeSinger(Request $request){
         $request->validate([
-            'name' => 'required|min:3|max:50',
+            'name' => 'required|max:50|unique:singers',
             'birth' => 'required',
             'gender_id' => 'required'
-        ]);
+        ],
+        [
+            'name.required' => 'Il nome è obbligatorio.',
+            'name.max' => 'Hai superato il numero massimo di caratteri(max 50).',
+            'name.unique' => 'Il nome è già stato inserito!',
+            'birth.required' => 'Inserire la data di nascita.',
+            'gender_id.required' => 'Campo obbligatorio.',
+        ]
+    );
 
         $singer = Singer::create([
             'name' => $request->name,
@@ -25,9 +33,6 @@ class SingerController extends Controller
         ]);
 
         // dd($singer);
-        return redirect(route('homepage'));
+        return redirect(route('homepage'))->with('message', 'Hai aggiunto correttamente il cantante.');
     }
-
-//->with('message','Il tuo articolo è stato creato ed è in fase di revisione');
-
 }
