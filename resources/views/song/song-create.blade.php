@@ -8,30 +8,27 @@
     @vite( ['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <h1 class="text-center">Inserisci nuove canzoni</h1>
-    <div class="text-center mt-5">
-        <a href="{{route('singer.create')}}" class="px-5">Inserisci nuovi cantanti</a>
-        <a href="{{route('homepage')}}">Torna alla homepage</a>
-    </div>
+    <h2 class="text-center my-5">Inserisci nuove canzoni</h2>
+
 
     <form action="{{route('song.store')}}" method="POST">
         @csrf
         <div class="row justify-content-center">
-            <div class="col-12 col-md-8 mt-5">
+            <div class="col-12 col-md-7 mt-5">
                 <label class="form-label fw-semibold">Titolo canzone</label>
                 <input type="text" class="form-control mb-1 @error('title') is-invalid @enderror" name="title" placeholder="Titolo" value="{{ old('title') }}">
                 @error('title')
                 <div class="alert alert-danger my-0 py-1">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="col-12 col-md-8">
+            <div class="col-12 col-md-7">
                 <label class="form-label fw-semibold">Data di rilascio</label>
                 <input type="date" class="form-control mb-1 @error('release') is-invalid @enderror" name="release" placeholder="Data di rilascio" value="{{ old('release') }}">
                 @error('release')
                 <div class="alert alert-danger my-0 py-1">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="form-group col-12 col-md-8">
+            <div class="form-group col-12 col-md-7">
                 <label for="singers" class="form-label fw-semibold">Cantanti</label>
                 <select class="form-control" id="singers" name="singers[]" multiple required>
                     @foreach($singers as $singer)
@@ -44,5 +41,10 @@
             <button type="submit" class="btn btn-primary">Aggiungi canzone</button>
         </div>
     </form>
+    <div class="d-flex justify-content-center mt-5">
+        <a href="{{route('singer.create')}}" class="btn mx-2 btn-primary">Inserisci nuovi cantanti</a>
+        <a href="{{route('homepage')}}" class="btn btn-primary">Torna alla homepage</a>
+    </div>
+
 </body>
 </html>

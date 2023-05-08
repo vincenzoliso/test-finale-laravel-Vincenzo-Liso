@@ -22,3 +22,7 @@ a{
 a:hover{
     color: rgb(49, 61, 129);
 }
+
+li{
+    list-style-type:none;
+}

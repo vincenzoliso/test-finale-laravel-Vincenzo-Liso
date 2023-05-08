@@ -29,4 +29,8 @@ Route::get('/song/create', [SongController::class, 'createSong'])->name('song.cr
 Route::post('/song/store', [SongController::class, 'storeSong'])->name('song.store');
 
 //rotta songs-by-singer
-Route::get('/songs-by-singer', [SongController::class, 'songsBySinger'])->name('songs.by.singer');
+Route::get('/songs-by-singer', [SongController::class, 'index'])->name('songs.by.singer');
+Route::post('/songs-by-singer', [SongController::class, 'songsBySinger'])->name('songs.by.singer.search');
+Route::get('/songs-by-singer/song/{id}/edit', [SongController::class, 'songEdit'])->name('song.edit');
+Route::put('/songs/{song}', [SongController::class, 'update'])->name('song.update');
+Route::delete('/songs-by-singer/song/{id}', [SongController::class, 'deleteSong'])->name('song.delete');

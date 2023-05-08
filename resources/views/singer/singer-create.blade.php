@@ -8,11 +8,9 @@
     @vite( ['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <h1 class="text-center">Inserisci nuovi cantanti</h1>
-    <div class="text-center mt-5">
-        <a href="{{route('song.create')}}" class="px-5">Inserisci nuove canzoni</a>
-        <a href="{{route('homepage')}}">Torna alla homepage</a>
-    </div>
+
+    <h2 class="text-center mt-5">Inserisci nuovi cantanti</h2>
+
 
     <form action="{{route('singer.store')}}" method="POST">
         @csrf
@@ -44,5 +42,9 @@
             <button type="submit" class="btn btn-primary">Aggiungi cantante</button>
         </div>
     </form>
+    <div class="text-center mt-5">
+        <a href="{{route('song.create')}}" class="btn btn-primary">Inserisci nuove canzoni</a>
+        <a href="{{route('homepage')}}" class="btn btn-primary">Torna alla homepage</a>
+    </div>
 </body>
 </html>
